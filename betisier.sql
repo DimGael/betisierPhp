@@ -4,6 +4,7 @@
 --
 -- Client :  localhost
 -- Généré le :  Sam 24 Janvier 2016 à 10:09
+-- Version du serveur :  5.5.41-0ubuntu0.14.10.1-log
 -- Version de PHP :  5.5.12-2ubuntu4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
