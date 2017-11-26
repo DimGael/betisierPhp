@@ -127,8 +127,6 @@ class Personne{
 	}
 
 	public function estValideMdp($mdp){
-
-
 	    $salt = "48@!alsd";
 		$password = $mdp;
 		$passwordSaisiMD5 = md5(md5($password).$salt);
