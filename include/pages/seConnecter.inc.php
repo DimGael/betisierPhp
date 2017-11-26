@@ -45,8 +45,8 @@ else
 		$personne = $personneManager->getPersonneLogin($_POST['login']);
 
 		if(!$personne->estValideMdp($_POST['mdp'])){
-			header("Location:index.php?page=9&mdpIncorrect=1");
-			exit();	
+			//header("Location:index.php?page=9&mdpIncorrect=1");
+			//exit();	
 		}
 
 		// ----------- Connecter la personne
@@ -60,7 +60,7 @@ else
 		Redirection automatique dans 2 secondes.
 
 		<?php
-		redirigerAccueil();
+		//redirigerAccueil();
 
 	}
 	else
