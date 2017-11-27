@@ -44,11 +44,12 @@
     }
 
     public function add($nom){
-
         $sql = "INSERT INTO ville(vil_nom) VALUES (:vn)";
         $req = $this->db->prepare($sql);
+
         $req->bindValue(':vn', $nom);
         $req->execute();
+        
         return true;
     }
 
