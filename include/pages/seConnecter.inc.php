@@ -52,6 +52,7 @@ else
 		// ----------- Connecter la personne
 		// ------- Connexion
 		$_SESSION['prenomPersonneConnecte'] = $personne->getPrenom();
+		$_SESSION['numPersonneConnecte'] = $personne->getNumero();
 		$_SESSION['estAdmin'] = $personne->getAdmin();
 
 		// ------- Affichage de la connexion et de la redirection

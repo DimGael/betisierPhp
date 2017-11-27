@@ -3,14 +3,27 @@ if(pagePourConnectes())
 {
 	$pdo = new Mypdo();
 
-	if(isset($_POST['citation']) && isset($_POST[enseignant])){
+	if(isset($_POST['citation']) && isset($_POST['enseignant'])){
 		//Verifier la citation
 
 
 		//Ajouter la citation
+		$vraiDate = new DateTime(date("d-m-Y H:i:s").' +1 hour');
+
+		new $citationValeurs = array(
+			'per_num' => $_POST['Enseignant'],
+			'per_num_etu' => $_SESSION['numPersonneConnecte'],
+			'cit_libelle' => $_POST['citation'],
+			'cit_date' => $_POST['dateCitation'],
+			'cit_valide' => 0,
+			'cit_date_depo' => $vraiDate
+		);
+
+		
 	}
 	else
 	{
+
 		$salarieManager = new SalarieManager($pdo);
 		$personneManager = new PersonneManager($pdo);
 		$listeProf = $salarieManager->getAllSalarieFonctionLibelle("Enseignant");
