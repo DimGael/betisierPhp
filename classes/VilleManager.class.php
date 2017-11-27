@@ -55,7 +55,7 @@
     public function getVilleNom($nomVille){
         $villeRes = null;
 
-        $reqSql = 'SELECT vil_num, vil_nom FROM VILLE WHERE vil_nom = '.$nomVille;
+        $reqSql = "SELECT vil_num, vil_nom FROM VILLE WHERE vil_nom = '$nomVille'";
 
         $req = $this->db->prepare($reqSql);
         $req->execute();
@@ -70,7 +70,7 @@
     }
 
     //Retourne vrai si la ville est déjà enregistrée
-    public function nomVilleExisteDeja($nomville){
+    public function nomVilleExisteDeja($nomVille){
         return !is_null($this->getVilleNom($nomVille));
     }
 }

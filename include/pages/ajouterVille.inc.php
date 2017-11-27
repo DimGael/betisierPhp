@@ -9,7 +9,7 @@ if(pagePourConnectes()){
 			$villeManager = new VilleManager($pdo);
 
 			//Vérifier si la ville n'est pas déjà enregistrée
-			if($villeManager->nomVilleExisteDeja()){
+			if($villeManager->nomVilleExisteDeja($_POST['nomVille'])){
 				?>
 					<img src="image/erreur.png"/>Erreur, la ville existe déjà !
 				<?php
