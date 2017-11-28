@@ -41,7 +41,9 @@ case 5:
 	// inclure ici la page ajouter citations
 	if(pagePourConnectes())
 	{
-    	include("pages/ajouterCitation.inc.php");
+		if(pagePourEtudiants()){
+    		include("pages/ajouterCitation.inc.php");
+    	}
     }
     break;
 

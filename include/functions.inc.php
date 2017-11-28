@@ -55,11 +55,16 @@
 		return true;
 	}
 
-	function pagePourEtudiant(){
+	function pagePourEtudiants(){
 		if(!estEtudiant()){
 
+			echo "<h1>Erreur</h1>\n";
+			echo "<p>\n";
+				echo "<img src=\"image/erreur.png\" alt=\"Erreur\"/>Vous n'avez pas le droit d'accéder à cette page, seul les etudiants ont le droit.\n";
+			echo "</p>\n";	
+
+			redirigerAccueil();
 			return false;
-			redirigerConnexion();
 		}
 
 		return true;
