@@ -53,12 +53,12 @@
 			if(estEtudiant()){
 					if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
 			?>
-						<td> <img src="/image/erreur.png" alt="Erreur"> </td>
+						<td> <img src="./image/erreur.png" alt="Erreur"> </td>
 			<?php
 					}
 					else{
 			?>
-						<td> <img src="/image/modifier.png" alt="Modifier"> </td>
+						<td> <img src="./image/modifier.png" alt="Modifier"> </td>
 			<?php
 					}
 			}

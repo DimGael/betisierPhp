@@ -28,13 +28,13 @@
 
 		public function aVote($numeroPersonne, $numeroCitation){
 			$resultat = null;
-			$reqSql = 'SELECT vot_valeur FROM vote WHERE cit_num = '.$numeroCitation.'AND per_num = '.$numeroPersonne; 
+			$reqSql = 'SELECT vot_valeur FROM vote WHERE cit_num = '.$numeroCitation.' AND per_num = '.$numeroPersonne; 
 
 			$req = $this->db->prepare($reqSql);
             $req->execute();
 
-            while($moyenne = $req->fetch(PDO::FETCH_OBJ)){
-				$resultat = $moyenne->moyenne;
+            while($res = $req->fetch(PDO::FETCH_OBJ)){
+				$resultat = $res->vot_valeur;
 			}
 
 			$req->closeCursor();
