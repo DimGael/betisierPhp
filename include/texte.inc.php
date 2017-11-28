@@ -16,7 +16,10 @@ case 0:
 	break;
 case 1:
 	// inclure ici la page insertion nouvelle personne
-	include("pages/ajouterPersonne.inc.php");
+	if(pagePourConnectes())
+	{
+		include("pages/ajouterPersonne.inc.php");
+	}
     break;
 
 case 2:
@@ -36,7 +39,10 @@ case 4:
 //
 case 5:
 	// inclure ici la page ajouter citations
-    include("pages/ajouterCitation.inc.php");
+	if(pagePourConnectes())
+	{
+    	include("pages/ajouterCitation.inc.php");
+    }
     break;
 
 case 6:
@@ -49,7 +55,10 @@ case 6:
 
 case 7:
 	// inclure ici la page ajouter ville
-	include("pages/ajouterVille.inc.php");
+	if(pagePourConnectes())
+	{
+		include("pages/ajouterVille.inc.php");
+	}
     break;
 
 case 8:
@@ -72,12 +81,18 @@ case 10:
     
 case 11:
 	// inclure ici la page ajouter Etudiant
-	include("pages/ajouterEtudiant.inc.php");
+	if(pagePourConnectes())
+	{
+		include("pages/ajouterEtudiant.inc.php");
+	}
     break;
 
 case 12:
 	// inclure ici la page ajouter salarié
-	include("pages/ajouterSalarie.inc.php");
+	if(pagePourConnectes())
+	{
+		include("pages/ajouterSalarie.inc.php");
+	}
     break;
 
 case 13:
