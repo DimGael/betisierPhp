@@ -42,8 +42,7 @@ if(pagePourConnectes())
 				$_SESSION['etudiant'] = $_POST['categorie'] == 'etudiant';
 
 				//Redirection à la page ajouter un étudiant
-				Header("Location:index.php?page=11");
-				exit();
+				redirigerPageNumero(11);
 			}
 		}
 	}

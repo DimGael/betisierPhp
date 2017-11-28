@@ -1,6 +1,7 @@
 <?php
 if(pagePourConnectes())
 {
+	//Faire en sorte que seul un étudiant puisse accéder à cette page
 	$pdo = new Mypdo();
 
 	if(isset($_POST['citation']) && isset($_POST['enseignant'])){
@@ -10,14 +11,36 @@ if(pagePourConnectes())
 		//Ajouter la citation
 		$vraiDate = new DateTime(date("d-m-Y H:i:s").' +1 hour');
 
-		new $citationValeurs = array(
-			'per_num' => $_POST['Enseignant'],
+		$citationValeurs = array(
+			'per_num' => $_POST['enseignant'],
 			'per_num_etu' => $_SESSION['numPersonneConnecte'],
-			'cit_libelle' => $_POST['citation'],
+			'cit_libelle' => htmlspecialchars($_POST['citation']),
 			'cit_date' => $_POST['dateCitation'],
-			'cit_valide' => 0,
-			'cit_date_depo' => $vraiDate
+			'cit_date_depo' => $vraiDate->format("Y-m-d H:i:s")
 		);
+
+		$citationManager = new CitationManager($pdo);
+
+		$citation = new Citation($citationValeurs);
+
+		//Enregistrement de la citation
+		if(!$citationManager->add($citation)){
+			//Echec lors de l'insertion de la Citation
+			?>
+			<img src="image/valid.png"/> Erreur lors de l'ajout de la citation.
+			Redirection automatique dans 2 secondes.
+			<?php
+			redirigerAccueil();
+		}
+		else{
+			//Succés lors de l'insertion de la citation
+			?>
+				<img src="image/valid.png"/>La citation a été rajoutée, elle sera affichée lorsqu'elle aura été validé par un administrateur.
+				Redirection automatique dans 2 secondes.
+			<?php
+			redirigerAccueil();
+
+		}
 
 		
 	}

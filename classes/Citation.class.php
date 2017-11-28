@@ -5,7 +5,7 @@ class Citation{
 	private $numero;
 	private $numeroPersonne;
 	private $numeroPersonneValide;
-	private $numeroPersonneEtudiant;
+	private $numeroEtudiant;
 	private $libelle;
 	private $date;
 	private $valide;
@@ -30,6 +30,10 @@ class Citation{
 
 				case 'per_num_valide':
 					$this->setNumeroPersonneValide($valeur);
+					break;
+
+				case 'per_num_etu' :
+					$this->setNumeroEtudiant($valeur);
 					break;
 
 				case 'cit_libelle' :
@@ -81,6 +85,16 @@ class Citation{
 	public function getNumeroPersonneValide(){
 		return $this->numeroPersonneValide;
 	}
+
+
+	public function setNumeroEtudiant($numeroEtudiant){
+		$this->numeroEtudiant = $numeroEtudiant;
+	}
+
+	public function getNumeroEtudiant(){
+		return $this->numeroEtudiant;
+	}
+
 
 
 	public function setLibelle($libelle){

@@ -61,7 +61,7 @@ else
 		Redirection automatique dans 2 secondes.
 
 		<?php
-		//redirigerAccueil();
+		redirigerAccueil();
 
 	}
 	else
