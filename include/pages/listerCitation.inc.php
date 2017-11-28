@@ -10,6 +10,7 @@
 
 
 
+
 ?>
 <h1>Liste des citations déposées</h1>
 <p> 
@@ -45,21 +46,23 @@
 			<td> <?php echo $citation->getLibelle() ?> </td>
 			<td> <?php echo getFrenchDate($citation->getDate()) ?> </td>
 			<td> <?php echo $voteManager->getMoyenneVotesCitation($citation->getNumero()) ?> </td>
-		<?php
-		if(estEtudiant()){
-				if(aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
-		?>
-					<td> <img src="/image/erreur.png" alt="Erreur"> </td>
-		<?php
-				}
-				else{
-		?>
-					<td> <img src="/image/modifier.png" alt="Modifier"> </td>
-				}
-		<?php
-		
-		}
-		?>
+
+
+
+			<?php
+			if(estEtudiant()){
+					if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
+			?>
+						<td> <img src="/image/erreur.png" alt="Erreur"> </td>
+			<?php
+					}
+					else{
+			?>
+						<td> <img src="/image/modifier.png" alt="Modifier"> </td>
+			<?php
+					}
+			}
+			?>
 
 
 
@@ -69,4 +72,3 @@
 		}
 	?>
 </table>
-
