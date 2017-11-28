@@ -77,8 +77,6 @@
 				'login' => $personne->getLogin(),
 				'pwd' =>	$personne->getPassword()
 			));
-
-			return true;
 		}
 
 		public function getDernierePersonneAjoutee(){

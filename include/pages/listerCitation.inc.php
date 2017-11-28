@@ -58,7 +58,7 @@
 					}
 					else{
 			?>
-						<td> <a href = "index.php?page=13"><img src="./image/modifier.png" alt="Modifier"></a> </td>
+						<td> <a href = "index.php?page=13&cit=<?php echo $citation->getNumero();?>"><img src="./image/modifier.png" alt="Modifier"></a> </td>
 			<?php
 					}
 			}

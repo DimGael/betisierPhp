@@ -41,6 +41,18 @@
 
 			return !is_null($resultat);
 		}
+
+
+		public function add($vote){
+			 $sql = "INSERT INTO  vote (cit_num, per_num, vot_valeur) VALUES (:cit, :pers, :note)";
+			 $req = $this->db->prepare($sql);
+
+			 return $req->execute(array(
+			 	'cit' => $vote->getNumeroCitation(),
+			 	'pers' => $vote->getNumeroPersonne(),
+			 	'note' => $vote->getValeur()
+			));
+		}
 	}
 
 ?>

@@ -105,6 +105,16 @@ case 13:
     	}
     }
     break;  
+
+case 14:
+		if(pagePourConnectes())
+	{
+		if(pagePourEtudiants()){
+    		include("pages/voterCible.inc.php");
+    	}
+    }
+    break;  
+  
     
 default : 	include_once('pages/accueil.inc.php');
 }
