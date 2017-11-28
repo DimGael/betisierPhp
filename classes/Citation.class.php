@@ -11,6 +11,7 @@ class Citation{
 	private $valide;
 	private $dateValide;
 	private $dateDeposition;
+	private $note;
 
 
 	public function __construct($valeurs){
@@ -143,6 +144,14 @@ class Citation{
 
 	public function estValide(){
 		return $this->valide == 1 && !is_null($this->dateValide);
+	}
+
+	public function setNote($note){
+		$this->note = $note;
+	}
+
+	public function getNote(){
+		return $this->note;
 	}
 }
 
