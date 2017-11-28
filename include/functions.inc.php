@@ -18,9 +18,7 @@
 
 	function estAdmin(){
 		if(isset($_SESSION['estAdmin']) && !empty($_SESSION['estAdmin']))
-			return true;
-		else
-			return false;
+			return $_SESSION['estAdmin'];
 	}
 
 	//Redirige l'utilisateur à la page choisi
@@ -55,6 +53,24 @@
 
 		//Retourne vrai si l'utilisateur a le droit d'accéder à la page reservé aux connectés
 		return true;
+	}
+
+	function pagePourEtudiant(){
+		if(!estEtudiant()){
+
+			return false;
+			redirigerConnexion();
+		}
+
+		return true;
+	}
+
+	function estEtudiant(){
+		if(isset($_SESSION['estEtudiant'])){
+			return $_SESSION['estEtudiant'];
+		}
+
+		return false;
 	}
 	
 	

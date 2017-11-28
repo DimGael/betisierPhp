@@ -45,8 +45,8 @@ else
 		$personne = $personneManager->getPersonneLogin($_POST['login']);
 
 		if(!$personne->estValideMdp($_POST['mdp'])){
-			//header("Location:index.php?page=9&mdpIncorrect=1");
-			//exit();	
+			header("Location:index.php?page=9&mdpIncorrect=1");
+			exit();	
 		}
 
 		// ----------- Connecter la personne
@@ -54,6 +54,7 @@ else
 		$_SESSION['prenomPersonneConnecte'] = $personne->getPrenom();
 		$_SESSION['numPersonneConnecte'] = $personne->getNumero();
 		$_SESSION['estAdmin'] = $personne->getAdmin();
+		$_SESSION['estEtudiant'] = $etudiantManager->estEtudiant($personne->getNumero());
 
 		// ------- Affichage de la connexion et de la redirection
 		?>
