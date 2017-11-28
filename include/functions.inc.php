@@ -29,13 +29,11 @@
 	}
 
 	function redirigerAccueil(){
-		header("Refresh:2; index.php?page=0");
-		exit();
+		redirigerPageNumero(0);
 	}
 
 	function redirigerConnexion(){
-		header("Refresh:2; index.php?page=9");
-		exit();
+		redirigerPageNumero(11);
 	}
 
 	//La méthode pagePourConnecte va renvoyer vrai si l'utilisateur est connecté, sinon elle renvoie faux et redirige l'utilisateur à la page de connexion
