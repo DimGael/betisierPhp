@@ -60,17 +60,20 @@ class SalarieManager{
 		public function getAllSalarieFonctionLibelle($libelleFonction){
 			$listeSal = array();
 			
-			$reqSql = "SELECT per_num, sal_telprof, fon_num FROM SALARIE
-			 WHERE fon_libelle = '$libelleFonction'";
+			$reqSql = "SELECT s.per_num, s.sal_telprof, s.fon_num FROM SALARIE s
+			INNER JOIN FONCTION f ON f.fon_num = s.fon_num
+			WHERE f.fon_libelle = '$libelleFonction'";
 
 			$req = $this->db->prepare($reqSql);
 			$req->execute();
 
 			while($resultat = $req->fetch(PDO::FETCH_OBJ)){
-				$salarie = new Salarie($resultat);
+				$listeSal[] = new Salarie($resultat);
 			}
 
 			$req->closeCursor();
+
+			return $listeSal;
 		}
 }
 

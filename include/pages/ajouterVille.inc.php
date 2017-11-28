@@ -7,15 +7,26 @@ if(pagePourConnectes()){
 		if(!empty($_POST['nomVille'])){
 			$pdo = new Mypdo();
 			$villeManager = new VilleManager($pdo);
-			if($villeManager->add($_POST['nomVille'])){
+
+			//Vérifier si la ville n'est pas déjà enregistrée
+			if($villeManager->nomVilleExisteDeja($_POST['nomVille'])){
 				?>
-					<img src="image/valid.png"/> La ville <em>"<?php echo $_POST['nomVille']; ?>"</em> a été ajoutée.
+					<img src="image/erreur.png"/>Erreur, la ville existe déjà !
 				<?php
+				redirigerAccueil();
 			}
 			else{
-				?>
-					<img src="image/erreur.png"/>Erreur inconnue lors de l'ajout de la ville.
-				<?php
+				if($villeManager->add($_POST['nomVille'])){
+					?>
+						<img src="image/valid.png"/> La ville <em>"<?php echo $_POST['nomVille']; ?>"</em> a été ajoutée.
+					<?php
+				}
+				else{
+					?>
+						<img src="image/erreur.png"/>Erreur inconnue lors de l'ajout de la ville.
+					<?php
+					redirigerAccueil();
+				}
 			}
 		}
 	}

@@ -58,6 +58,22 @@ class CitationManager{
 
 		return $taille;
 	}
+
+	//La méthode insère la citation non validée
+	public function add($citation){
+		$reqSql = "INSERT INTO CITATION (per_num, per_num_etu,cit_libelle, cit_date, cit_valide, cit_date_depo)
+			VALUES(:per_num, :per_num_etu, :cit_libelle, :cit_date, 0, :cit_date_depo)";
+
+		$req = $this->db->prepare($reqSql);
+
+		return $req->execute(array(
+			'per_num' => $citation->getNumeroPersonne(),
+			'per_num_etu' => $citation->getNumeroEtudiant(),
+			'cit_libelle' => $citation->getLibelle(),
+			'cit_date' => $citation->getDate(),
+			'cit_date_depo' => $citation->getDateDeposition()
+		));
+	}
 }
 
 ?>

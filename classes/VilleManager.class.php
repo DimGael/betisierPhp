@@ -44,12 +44,35 @@
     }
 
     public function add($nom){
-
         $sql = "INSERT INTO ville(vil_nom) VALUES (:vn)";
         $req = $this->db->prepare($sql);
+
         $req->bindValue(':vn', $nom);
         $req->execute();
+        
         return true;
+    }
+
+    public function getVilleNom($nomVille){
+        $villeRes = null;
+
+        $reqSql = "SELECT vil_num, vil_nom FROM VILLE WHERE vil_nom = '$nomVille'";
+
+        $req = $this->db->prepare($reqSql);
+        $req->execute();
+
+        while ($ville = $req->fetch(PDO::FETCH_OBJ)) {
+            $villeRes = new Ville($ville);
+        }
+
+        $req->closeCursor();
+
+        return $villeRes;
+    }
+
+    //Retourne vrai si la ville est déjà enregistrée
+    public function nomVilleExisteDeja($nomVille){
+        return !is_null($this->getVilleNom($nomVille));
     }
 }
 
