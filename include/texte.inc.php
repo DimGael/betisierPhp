@@ -98,7 +98,12 @@ case 12:
     break;
 
 case 13:
-	//Inclure ici la page ...
+		if(pagePourConnectes())
+	{
+		if(pagePourEtudiants()){
+    		include("pages/voter.inc.php");
+    	}
+    }
     break;  
     
 default : 	include_once('pages/accueil.inc.php');

@@ -58,7 +58,7 @@
 					}
 					else{
 			?>
-						<td> <img src="./image/modifier.png" alt="Modifier"> </td>
+						<td> <a href = "index.php?page=13"><img src="./image/modifier.png" alt="Modifier"></a> </td>
 			<?php
 					}
 			}
