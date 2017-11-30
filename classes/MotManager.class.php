@@ -6,18 +6,18 @@ class MotManager{
   public function verifMot($mot){
 
     if(isset($mot) && !empty($mot)){
-        $motsInterdits = null;
+        $motsInterdit = null;
         $sqlFullText = ('SELECT mot_id, mot_interdit FROM mot WHERE MATCH (mot_interdit) AGAINST ("'.$mot.'" IN BOOLEAN MODE)');
         $reponse = $this->db->prepare($sqlFullText);
 
         $reponse->execute();
 
         while($ligne = $reponse->fetch()){
-          $motsInterdits = new Mot($ligne);
+          $motsInterdit = new Mot($ligne);
         }
 
       }
-      return $motsInterdits;
+      return $motsInterdit;
     }
 }
 ?>

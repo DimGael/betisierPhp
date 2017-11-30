@@ -11,7 +11,7 @@ if(isset($_POST['citation']) && isset($_POST['enseignant'])){
 
 	foreach ($libelleArray as $mot) {
 		if(!is_null($motManager->verifMot($mot))){
-			$listeMotsInterdits[] = $motManager->verifMot($mot);
+			$listeMotsInterdits[] = $mot;
 		}
 	}
 
@@ -87,11 +87,30 @@ $listeProf = $salarieManager->getAllSalarieFonctionLibelle("Enseignant");
 	<textarea name="citation" id="citation" required="true" rows="4" cols="35" maxlength="256" style="resize:none" placeholder="Ecrire ici la citation que vous voulez ajouter."><?php
 
 		if(!empty($listeMotsInterdits)){
-			echo "CETTE CITATION COMPORTE DES MOTS INTERDITS";
+				$motInterdit = 0;
+			foreach ($libelleArray as $mot) {
+				if($mot == $listeMotsInterdits[$motInterdit]){
+					$motInterdit++;
+					echo '--- ';
+				}
+				else
+					echo "$mot ";
+			}
 		}
 	?></textarea>
 
 	<br><br>
+		<?php
+			if(!empty($listeMotsInterdits)){
+				echo "<p>\n";
+				foreach ($listeMotsInterdits as $motInterdit) {
+					echo "\t\t\t<img src=\"image/erreur.png\"/> Le mot '<em>$motInterdit</em>' n'est pas autorisé.";
+					echo "<br>\n";
+				}
+				echo "\t\t</p>\n";
+				echo "<br><br>\n\n";
+			}
+		?>
 
 	<input type="submit" value="Valider">
 
