@@ -11,7 +11,7 @@ class DepartementManager{
 	public function getAllDepartements(){
 		$listeDepartements = array();
 
-		$reqSql = "SELECT dep_num, dep_nom, vil_num FROM DEPARTEMENT ORDER BY dep_num";
+		$reqSql = "SELECT dep_num, dep_nom, vil_num FROM departement ORDER BY dep_num";
 
 		$req = $this->db->prepare($reqSql);
 		$req->execute();
@@ -27,7 +27,7 @@ class DepartementManager{
 	public function getDepartementNumero($numeroDepartement){
 		$departement = null;
 
-		$reqSql = 'SELECT dep_num, dep_nom, vil_num FROM DEPARTEMENT WHERE dep_num = '.$numeroDepartement;
+		$reqSql = 'SELECT dep_num, dep_nom, vil_num FROM departement WHERE dep_num = '.$numeroDepartement;
 
 		$req = $this->db->prepare($reqSql);
 		$req->execute();
@@ -44,7 +44,7 @@ class DepartementManager{
 	public function getDepartementNom($nomDepartement){
 			$departement = null;
 
-			$sql = "SELECT dep_num, dep_nom, vil_num FROM DEPARTEMENT
+			$sql = "SELECT dep_num, dep_nom, vil_num FROM departement
 			WHERE dep_nom = '$nomDepartement'";
 
 			$req = $this->db->prepare($sql);

@@ -26,7 +26,7 @@
 		public function getDivisionNom($nomDivision){
 			$division = null;
 
-			$sql = "SELECT div_num, div_nom FROM DIVISION
+			$sql = "SELECT div_num, div_nom FROM division
 			WHERE div_nom = '$nomDivision'";
 
 			$req = $this->db->prepare($sql);

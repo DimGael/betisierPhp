@@ -29,7 +29,7 @@
     public function getVilleNumero($numeroVille){
         $villeRes = null;
 
-        $reqSql = 'SELECT vil_num, vil_nom FROM VILLE WHERE vil_num = '.$numeroVille;
+        $reqSql = 'SELECT vil_num, vil_nom FROM ville WHERE vil_num = '.$numeroVille;
 
         $req = $this->db->prepare($reqSql);
         $req->execute();
@@ -56,7 +56,7 @@
     public function getVilleNom($nomVille){
         $villeRes = null;
 
-        $reqSql = "SELECT vil_num, vil_nom FROM VILLE WHERE vil_nom = '$nomVille'";
+        $reqSql = "SELECT vil_num, vil_nom FROM ville WHERE vil_nom = '$nomVille'";
 
         $req = $this->db->prepare($reqSql);
         $req->execute();

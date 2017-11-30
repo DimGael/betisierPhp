@@ -9,13 +9,13 @@ class SalarieManager{
 
 	public function getAllSalarie(){
 			$listeSal = array();
-			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM Etudiant ORDER BY per_num';
+			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM salarie ORDER BY per_num';
 
 			$req = $this->db->prepare($reqSql);
 			$req->execute();
 
 			while ($salarie = $req->fetch(PDO::FETCH_OBJ)){
-				$listeSal[] = new Etudiant($salarie);
+				$listeSal[] = new Salarie($salarie);
 			}
 
 			$req->closeCursor();
@@ -30,7 +30,7 @@ class SalarieManager{
 		public function getSalarieNumero($numeroPersonne){
 			$salarie = null;
 
-			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM SALARIE WHERE per_num = '.$numeroPersonne;
+			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM salarie WHERE per_num = '.$numeroPersonne;
 
 			$req = $this->db->prepare($reqSql);
 			$req->execute();
@@ -45,7 +45,7 @@ class SalarieManager{
 		}
 
 		public function add($salarie){
-			$reqSql = "INSERT INTO SALARIE (per_num, sal_telprof, fon_num)
+			$reqSql = "INSERT INTO salarie (per_num, sal_telprof, fon_num)
 			VALUES(:per_num, :sal_telprof, :fon_num)";
 
 			$req = $this->db->prepare($reqSql);
@@ -60,8 +60,8 @@ class SalarieManager{
 		public function getAllSalarieFonctionLibelle($libelleFonction){
 			$listeSal = array();
 			
-			$reqSql = "SELECT s.per_num, s.sal_telprof, s.fon_num FROM SALARIE s
-			INNER JOIN FONCTION f ON f.fon_num = s.fon_num
+			$reqSql = "SELECT s.per_num, s.sal_telprof, s.fon_num FROM salarie s
+			INNER JOIN fonction f ON f.fon_num = s.fon_num
 			WHERE f.fon_libelle = '$libelleFonction'";
 
 			$req = $this->db->prepare($reqSql);

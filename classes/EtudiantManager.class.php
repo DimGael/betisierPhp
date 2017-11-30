@@ -9,7 +9,7 @@
 
 		public function getAllEtudiants(){
 			$listeEtu = array();
-			$reqSql = 'SELECT per_num, dep_num, div_num FROM Etudiant ORDER BY per_num';
+			$reqSql = 'SELECT per_num, dep_num, div_num FROM etudiant ORDER BY per_num';
 
 			$req = $this->db->prepare($reqSql);
 			$req->execute();
@@ -29,7 +29,7 @@
 
 		public function getEtudiantNumero($numeroPersonne){
 			$etudiant = null;
-			$reqSql = "SELECT per_num, dep_num, div_num FROM Etudiant WHERE per_num = ".$numeroPersonne;
+			$reqSql = "SELECT per_num, dep_num, div_num FROM etudiant WHERE per_num = ".$numeroPersonne;
 
 			$req = $this->db->prepare($reqSql);
 			$req->execute();
@@ -44,7 +44,7 @@
 		}
 
 		public function add($etudiant){
-			$reqSql = "INSERT INTO ETUDIANT (per_num, dep_num, div_num)
+			$reqSql = "INSERT INTO etudiant (per_num, dep_num, div_num)
 			VALUES(:per_num, :dep_num, :div_num)";
 
 			$req = $this->db->prepare($reqSql);
