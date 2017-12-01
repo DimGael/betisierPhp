@@ -75,6 +75,20 @@
 
 		return false;
 	}
+
+	function pagePourAdmin(){
+		if(!estAdmin()){
+			echo "<h1>Erreur</h1>\n";
+			echo "<p>\n";
+				echo "<img src=\"image/erreur.png\" alt=\"Erreur\"/>Vous n'avez pas le droit d'accéder à cette page.\n";
+			echo "</p>\n";	
+
+			redirigerAccueil();
+			return false;
+		}
+
+		return true;
+	}
 	
 	
 ?>

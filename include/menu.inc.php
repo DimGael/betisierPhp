@@ -16,6 +16,7 @@
 					{
 				?>
 					<li><a href="index.php?page=4">Supprimer</a></li>
+					<li><a href="index.php?page=4">Modifier</a></li>
 			<?php
 					}
 				}
@@ -23,6 +24,8 @@
 
 
 		</ul>
+
+		<!-- CITATIONS -->
 		<p><img class="icone" src="image/citation.gif"  alt="Citation"/>Citations</p>
 		<ul>
 
@@ -44,7 +47,7 @@
 				<?php
 					if(estAdmin()){
 				?>
-				<li><a href="index.php?page=9">Valider</a></li>
+				<li><a href="index.php?page=15">Valider</a></li>
 				<li><a href="index.php?page=10">Supprimer</a></li>
 			<?php
 					}

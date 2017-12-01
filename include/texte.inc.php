@@ -107,13 +107,32 @@ case 13:
     break;  
 
 case 14:
-		if(pagePourConnectes())
+	if(pagePourConnectes())
 	{
 		if(pagePourEtudiants()){
     		include("pages/voterCible.inc.php");
     	}
     }
     break;  
+
+case 15:
+	
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/validerCitation.inc.php");
+		}
+	}
+	break;
+
+case 16:
+	
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/validerCitationCible.inc.php");
+		}
+	}
+	
+	break;
   
     
 default : 	include_once('pages/accueil.inc.php');

@@ -24,6 +24,24 @@ class CitationManager{
 		return $listeCitations;
 	}
 
+	public function getAllCitationsNonValides(){
+		$listeCitations;
+
+		$sql = 'SELECT cit_num, per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation
+				WHERE cit_valide = 0';
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
 	public function get2CitationsValides(){
 		$listeCitations;
 
@@ -73,6 +91,25 @@ class CitationManager{
 			'cit_date' => $citation->getDate(),
 			'cit_date_depo' => $citation->getDateDeposition()
 		));
+	}
+
+	public function valider($numeroCitation){
+		$vraiDate = new DateTime(date("d-m-Y H:i:s").' +1 hour');
+
+		$reqSql="UPDATE citation SET cit_valide = 1, cit_date_valide = '".$vraiDate->format("Y-m-d")."' WHERE cit_num = ".$numeroCitation;
+
+		$req=$this->db->prepare($reqSql);
+
+		return $req->execute();
+	}
+
+	public function supprimer($numeroCitation){
+		$reqSql="DELETE FROM citation WHERE cit_num = ".$numeroCitation;
+
+		$req=$this->db->prepare($reqSql);
+
+		return $req->execute();
+
 	}
 }
 

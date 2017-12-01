@@ -58,7 +58,7 @@ if(isset($_POST['citation']) && isset($_POST['enseignant'])){
 
 $salarieManager = new SalarieManager($pdo);
 $personneManager = new PersonneManager($pdo);
-$listeProf = $salarieManager->getAllSalarieFonctionLibelle("Enseignant");
+$listeSalarie = $salarieManager->getAllSalarie();
 ?>
 <h1>Ajouter une citation</h1>
 
@@ -68,7 +68,7 @@ $listeProf = $salarieManager->getAllSalarieFonctionLibelle("Enseignant");
 	<select name="enseignant">
 		<?php
 
-			foreach ($listeProf as $enseignant) {
+			foreach ($listeSalarie as $enseignant) {
 					$personneEnseignant = $personneManager->getPersonneNumero($enseignant->getNumeroPersonne());
 
 					echo '<option value="'.$enseignant->getNumeroPersonne().'">'.$personneEnseignant->getNom().'</option>';
