@@ -31,7 +31,7 @@ if(isset($_SESSION['personneAAjouter']) && isset($_POST['telPro']) && isset($_PO
 			'fon_num' => $_POST['fonction']
 		)))){
 			//Erreur lors de l'insertion du salarié
-			//Supprimer la personne ajoutée avant
+			$personneManager->supprimerPersonne($numPersonneAjoutee);
 			?>
 		 		<img src="image/erreur.png" alt="Erreur">Erreur lors de l'insertion du salarié
 		 	<?php

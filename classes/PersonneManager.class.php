@@ -96,6 +96,14 @@
 
 			return $personne;
 		}
+
+		public function supprimerPersonne($numeroPersonne){
+			$sql = "DELETE FROM personne WHERE per_num = $numeroPersonne";
+
+			$req = $this->db->prepare($sql);
+
+			return $req->execute();
+		}
 	}
 
 ?>
