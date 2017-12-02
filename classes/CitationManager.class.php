@@ -111,6 +111,14 @@ class CitationManager{
 		return $req->execute();
 
 	}
+
+	public function toutSupprimerNumeroPersonne($numeroPersonne){
+		$reqSql = "DELETE FROM citation WHERE per_num = $numeroPersonne";
+
+		$req=$this->db->prepare($reqSql);
+
+		return $req->execute();
+	}
 }
 
 ?>

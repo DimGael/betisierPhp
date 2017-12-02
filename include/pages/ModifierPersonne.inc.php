@@ -60,9 +60,6 @@ else if (isset($_SESSION['numPersonneModif'])){
 	$personneManager = new PersonneManager($pdo);
 	$etudiantManager = new EtudiantManager($pdo);
 
-	//Pour vérifier si la personne est de base un étudiant
-	$_SESSION['etaitEtudiantModif'] = $etudiantManager->estEtudiant($_SESSION['numPersonneModif']);
-
 	$personne = $personneManager->getPersonneNumero($_SESSION['numPersonneModif']);
 
 	//Si le mot de passe n'a pas été modifié, le hash comme il se doit, sinon on le laisse tel quel

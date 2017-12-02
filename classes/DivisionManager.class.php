@@ -38,4 +38,20 @@
 
 			return $division;
 		}
+
+		public function getDivisionNumero($numeroDivision){
+			$division = null;
+
+			$sql = "SELECT div_num, div_nom FROM division
+			WHERE div_num = $numeroDivision";
+
+			$req = $this->db->prepare($sql);
+			$req->execute();
+
+			while ($div = $req->fetch(PDO::FETCH_OBJ)){
+				$division = new Division($div);
+			}
+
+			return $division;
+		}
 	}

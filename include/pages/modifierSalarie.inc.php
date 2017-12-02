@@ -17,17 +17,17 @@ if(isset($_POST['telPro']) && isset($_SESSION['personneAModifier'])){
 	}
 
 	//Modifier ou créer un nouveau Salarie
-
+	$salarieManager = new SalarieManager($pdo);
+	
 	$etaitEtu = false;
-	//Si la personne était un étudiant, supprimer tous ses votes, puis supprimer l'etudiant
-	if($_SESSION['etaitEtudiantModif']){
+	//Si la personne était un étudiant (n'était pas un salarié), supprimer tous ses votes, puis supprimer l'etudiant
+	if(!$salarieManager->estSalarie($personneAModif->getNumero())){
 		$etaitEtu = true;
 		$etudiantManager = new EtudiantManager($pdo);
 		$voteManager = new VoteManager($pdo);
 
 		if(!$voteManager->toutSupprimerNumeroPersonne($personneAModif->getNumero())){
 			//Erreur lors de la suppression des votes
-			unset($_SESSION['etaitEtudiantModif']);
 			?>
 				<img src="image/erreur.png" alt="Erreur"> Erreur lors de la supression de l'ancien étudiant.
 			<?php
@@ -35,17 +35,13 @@ if(isset($_POST['telPro']) && isset($_SESSION['personneAModifier'])){
 		}	
 		if(!$etudiantManager->delete($personneAModif->getNumero())){
 			//Erreur lors de la suppression de l'étudiant
-			unset($_SESSION['etaitEtudiantModif']);
 			?>
 				<img src="image/erreur.png" alt="Erreur"> Erreur lors de la supression de l'ancien étudiant.
 			<?php
 			redirigerAccueil();
 		}
 	}
-	unset($_SESSION['etaitEtudiantModif']);
 
-
-	$salarieManager = new SalarieManager($pdo);
 
 	//Si c'était un étudiant, créer un nouveau salarié
 	if($etaitEtu){

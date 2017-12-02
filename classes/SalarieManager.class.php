@@ -86,6 +86,14 @@ class SalarieManager{
 			'fon_num' => $salarie->getNumeroFonction()
 		));
 	}
+
+	public function delete($numeroPersonne){
+		$reqSql = "DELETE FROM salarie WHERE per_num = $numeroPersonne";
+
+		$req = $this->db->prepare($reqSql);
+
+		return $req->execute();
+	}
 }
 
 ?>
