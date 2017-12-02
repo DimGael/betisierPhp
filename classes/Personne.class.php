@@ -123,7 +123,7 @@ class Personne{
 	}
 
 	public function setPassword($password){
-		$this->pwd = $password;
+		$this->pwd = md5(md5($password)."48@!alsd");
 	}
 
 	public function estValideMdp($mdp){

@@ -67,16 +67,19 @@
 			$sql = "INSERT INTO personne (per_nom, per_prenom, per_tel, per_mail, per_admin, per_login, per_pwd)
 					VALUES(:nom, :pre, :tel, :mail, :admin, :login, :pwd)";
 			$req = $this->db->prepare($sql);
-
-			return $req->execute(array(
-				'nom' => $personne->getNom(),
-				'pre' => $personne->getPrenom(),
-				'tel' => $personne->getTelephone(),
-				'mail' => $personne->getMail(),
-				'admin' => $personne->getAdmin(),
-				'login' => $personne->getLogin(),
-				'pwd' =>	$personne->getPassword()
-			));
+			try{
+				return $req->execute(array(
+					'nom' => $personne->getNom(),
+					'pre' => $personne->getPrenom(),
+					'tel' => $personne->getTelephone(),
+					'mail' => $personne->getMail(),
+					'admin' => $personne->getAdmin(),
+					'login' => $personne->getLogin(),
+					'pwd' =>	$personne->getPassword()
+				));
+			}catch (PDOException $e) {
+  				  die($e->getMessage());
+			}
 		}
 
 		public function getDernierePersonneAjoutee(){
