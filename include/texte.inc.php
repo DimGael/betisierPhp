@@ -133,6 +133,14 @@ case 16:
 	}
 	
 	break;
+
+case 17:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierPersonne.inc.php");
+		}
+	}
+	break;
   
     
 default : 	include_once('pages/accueil.inc.php');
