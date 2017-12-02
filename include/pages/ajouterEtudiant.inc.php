@@ -1,6 +1,7 @@
 <?php
 $pdo = new Mypdo();
-//Si le formulaire a été rempli ET que la personne à ajouter existe
+
+//------ AJOUT DU SALARIE ET DE LA PERSONNE
 if(isset($_POST['annee']) && isset($_POST['departement']) && isset($_SESSION['personneAAjouter'])){
 	//Ajouter la personne et ajouter l'étudiant ou le salarié
 	$personneManager = new PersonneManager($pdo);
@@ -46,6 +47,8 @@ if(isset($_POST['annee']) && isset($_POST['departement']) && isset($_SESSION['pe
 	unset($_SESSION['etudiant']);
 }
 
+
+//------ AFFICHAGE DU FORMULAIRE AJOUTER UN ETUDIANT
 else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 	if($_SESSION['etudiant']){
 		//Si la personne à ajouter est un étudiant
@@ -88,10 +91,18 @@ else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 	}
 	else
 	{
+		//Si l'utilisateur voulait rajouter un salarié, le redirige vers l'ajout de salarié
 		Header("Location:index.php?page=12");
 		exit();
 	}
 
+}
+
+
+
+// --- SI L'UTILISATEUR PASSE PAR L'URL SANS AVOIR RIEN REMPLI
+else{
+	redirigerAccueil();
 }
 
 ?>

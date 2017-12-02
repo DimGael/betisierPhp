@@ -5,7 +5,13 @@ if(isset($_SESSION['personneAAjouter']) && isset($_POST['telPro']) && isset($_PO
 {
 	//Ajouter la personne et ajouter le salarié
 	$personneManager = new PersonneManager($pdo);
-	if(!$personneManager->add(new Personne($_SESSION['personneAAjouter'])))
+
+	//Suppression de la variable de session
+	$personneAjouter = $_SESSION['personneAAjouter'];
+	unset($_SESSION['personneAAjouter']);
+
+
+	if(!$personneManager->add(new Personne($personneAjouter)))
 	{
 		//Erreur lors de l'insertion de la personne
 	 	?>
@@ -71,6 +77,10 @@ else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 		</form>
 		<?php
 	}
+}
+else{
+
+	redirigerAccueil();
 }
 
 ?>
