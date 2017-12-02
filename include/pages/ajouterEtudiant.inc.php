@@ -57,36 +57,37 @@ else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 		<h1>Ajouter un etudiant</h1>
 
 		<form method="post" action="index.php?page=11">
-		Année :
-		<select name="annee">
-			<?php
-				//Afficher toutes les divisions
-			$divisionManager = new DivisionManager($pdo);
-			$listeDivisions = $divisionManager->getAllDivisions();
+			Année :
+			<select name="annee">
+				<?php
+					//Afficher toutes les divisions
+				$divisionManager = new DivisionManager($pdo);
+				$listeDivisions = $divisionManager->getAllDivisions();
 
-			foreach ($listeDivisions as $division) {
-				echo '<option value="'.$division->getNumero().'">'.$division->getNom().'</option>';
-				echo "\n";
-			}
-			?>
-			
-		</select><br><br>
+				foreach ($listeDivisions as $division) {
+					echo '<option value="'.$division->getNumero().'">'.$division->getNom().'</option>';
+					echo "\n";
+				}
+				?>
+				
+			</select><br><br>
 
-		Département :
-		<select name="departement">
-			<?php
-			//Afficher tous les départements
-			$departementManager = new DepartementManager($pdo);
-			$listeDepartements = $departementManager->getAllDepartements();
-			foreach ($listeDepartements as $departement) {
-				echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().'</option>';
-				echo "\n";
-			}
-			?>
-		</select>
-		<br><br>
+			Département :
+			<select name="departement">
+				<?php
+				//Afficher tous les départements
+				$departementManager = new DepartementManager($pdo);
+				$listeDepartements = $departementManager->getAllDepartements();
+				foreach ($listeDepartements as $departement) {
+					echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().'</option>';
+					echo "\n";
+				}
+				?>
+			</select>
+			<br><br>
 
-		<input type="submit" value="Valider"/>
+			<input type="submit" value="Valider"/>
+		</form>
 		<?php
 	}
 	else
