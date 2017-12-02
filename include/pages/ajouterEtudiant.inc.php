@@ -52,6 +52,9 @@ if(isset($_POST['annee']) && isset($_POST['departement']) && isset($_SESSION['pe
 else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 	if($_SESSION['etudiant']){
 		//Si la personne à ajouter est un étudiant
+		$divisionManager = new DivisionManager($pdo);
+		$departementManager = new DepartementManager($pdo);
+		$villeManager = new VilleManager($pdo);
 		?>
 
 		<h1>Ajouter un etudiant</h1>
@@ -61,7 +64,6 @@ else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 			<select name="annee">
 				<?php
 					//Afficher toutes les divisions
-				$divisionManager = new DivisionManager($pdo);
 				$listeDivisions = $divisionManager->getAllDivisions();
 
 				foreach ($listeDivisions as $division) {
@@ -76,10 +78,9 @@ else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 			<select name="departement">
 				<?php
 				//Afficher tous les départements
-				$departementManager = new DepartementManager($pdo);
 				$listeDepartements = $departementManager->getAllDepartements();
 				foreach ($listeDepartements as $departement) {
-					echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().'</option>';
+					echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().' ('.$villeManager->getVilleNumero($departement->getNumeroVille())->getNom().')</option>';
 					echo "\n";
 				}
 				?>

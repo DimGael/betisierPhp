@@ -13,6 +13,7 @@ if(!isset($_POST['annee']) || !isset($_POST['departement'])){
 	}
 	$divisionManager = new DivisionManager($pdo);
 	$departementManager = new DepartementManager($pdo);
+	$villeManager = new VilleManager($pdo);
 
 	?>
 
@@ -23,7 +24,8 @@ if(!isset($_POST['annee']) || !isset($_POST['departement'])){
 			<?php
 			if($estEtudiant){
 				//Afficher la division de l'etudiant
-				echo '<option value="'.$divisionManager->getDivisionNumero($etudiant->getNumeroDivision())->getNumero().'">'.$divisionManager->getDivisionNumero($etudiant->getNumeroDivision())->getNom().'</option>';
+				$divisionEtu = $divisionManager->getDivisionNumero($etudiant->getNumeroDivision());
+				echo '<option value="'.$etudiant->getNumeroDivision().'">'.$divisionEtu->getNom().'</option>';
 				echo "\n";
 			}
 
@@ -45,7 +47,8 @@ if(!isset($_POST['annee']) || !isset($_POST['departement'])){
 		<select name="departement">
 			<?php
 			if($estEtudiant){
-				echo '<option value="'.$departementManager->getDepartementNumero($etudiant->getNumeroDepartement())->getNumero().'">'.$departementManager->getDepartementNumero($etudiant->getNumeroDepartement())->getNom().'</option>';
+				$departementEtudiant = $departementManager->getDepartementNumero($etudiant->getNumeroDepartement());
+				echo '<option value="'.$etudiant->getNumeroDepartement().'">'.$departementEtudiant->getNom().' ('.$villeManager->getVilleNumero($departementEtudiant->getNumeroVille())->getNom().')</option>';
 				echo "\n";
 			}
 
@@ -55,7 +58,7 @@ if(!isset($_POST['annee']) || !isset($_POST['departement'])){
 			foreach ($listeDepartements as $departement) {
 				if($etudiant->getNumeroDepartement() != $departement->getNumero())
 				{
-					echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().'</option>';
+					echo '<option value="'.$departement->getNumero().'">'.$departement->getNom().' ('.$villeManager->getVilleNumero($departement->getNumeroVille())->getNom().')</option>';
 					echo "\n";
 				}
 			}
