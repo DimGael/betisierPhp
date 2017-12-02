@@ -56,6 +56,14 @@
 			));
 		}
 
+		public function delete($numeroPersonne){
+			$reqSql = "DELETE FROM etudiant WHERE per_num = $numeroPersonne";
+
+			$req = $this->db->prepare($reqSql);
+
+			return $req->execute();
+		}
+
 	}
 
 ?>

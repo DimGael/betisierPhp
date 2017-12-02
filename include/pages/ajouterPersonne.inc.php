@@ -19,7 +19,7 @@ if(isset($_POST['nomPersonne']))
 				Redirection automatique dans 2 secondes.
 			</p>
 			<?php
-			redirigerPageNumero(1);
+			redirigerPageNumero(1,2);
 		}
 		else{
 
@@ -36,7 +36,7 @@ if(isset($_POST['nomPersonne']))
 			$_SESSION['etudiant'] = $_POST['categorie'] == 'etudiant';
 
 			//Redirection à la page ajouter un étudiant
-			redirigerPageNumero(11);
+			redirigerPageNumero(11,1);
 		}
 	}
 }

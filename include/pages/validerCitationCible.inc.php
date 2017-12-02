@@ -18,7 +18,7 @@
 		}
 		echo "<br>Vous allez être redirigé dans 2 secondes.";
 		//Redirection vers la page valider Citation
-		redirigerPageNumero(15);
+		redirigerPageNumero(15,2);
 	}
 	else if(isset($_GET['supprimer'])){
 		//Suppression de la citation
@@ -39,7 +39,7 @@
 		}
 		echo "<br>Vous allez être redirigé dans 2 secondes.";
 		//Redirection vers la page valider Citation
-		redirigerPageNumero(15);
+		redirigerPageNumero(15,2);
 	}
 	else
 	{

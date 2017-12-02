@@ -64,22 +64,20 @@
 		}
 
 		public function add($personne){
+			var_dump($personne);
 			$sql = "INSERT INTO personne (per_nom, per_prenom, per_tel, per_mail, per_admin, per_login, per_pwd)
 					VALUES(:nom, :pre, :tel, :mail, :admin, :login, :pwd)";
 			$req = $this->db->prepare($sql);
-			try{
-				return $req->execute(array(
-					'nom' => $personne->getNom(),
-					'pre' => $personne->getPrenom(),
-					'tel' => $personne->getTelephone(),
-					'mail' => $personne->getMail(),
-					'admin' => $personne->getAdmin(),
-					'login' => $personne->getLogin(),
-					'pwd' =>	$personne->getPassword()
-				));
-			}catch (PDOException $e) {
-  				  die($e->getMessage());
-			}
+
+			return $req->execute(array(
+				'nom' => $personne->getNom(),
+				'pre' => $personne->getPrenom(),
+				'tel' => $personne->getTelephone(),
+				'mail' => $personne->getMail(),
+				'admin' => $personne->getAdmin(),
+				'login' => $personne->getLogin(),
+				'pwd' =>	$personne->getPassword()
+			));
 		}
 
 		public function getDernierePersonneAjoutee(){
@@ -106,6 +104,22 @@
 			$req = $this->db->prepare($sql);
 
 			return $req->execute();
+		}
+
+		public function update($personne){
+			$sql = "UPDATE personne SET per_nom = :nom, per_prenom = :pre, per_tel = :tel, per_mail = :mail, per_admin = :admin, per_login = :login, per_pwd = :pwd  WHERE per_num = ".$personne->getNumero();
+
+			$req = $this->db->prepare($sql);
+
+			return $req->execute(array(
+				'nom' => $personne->getNom(),
+				'pre' => $personne->getPrenom(),
+				'tel' => $personne->getTelephone(), 
+				'mail' => $personne->getMail(), 
+				'admin' => 0, 
+				'login' => $personne->getLogin(), 
+				'pwd' => $personne->getPassword()
+			));
 		}
 	}
 

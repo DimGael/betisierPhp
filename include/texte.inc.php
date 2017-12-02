@@ -137,11 +137,34 @@ case 16:
 case 17:
 	if(pagePourConnectes()){
 		if(pagePourAdmin()){
+			include("pages/modifierPersonneMenu.inc.php");
+		}
+	}
+	break;
+
+case 18:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
 			include("pages/modifierPersonne.inc.php");
 		}
 	}
 	break;
-  
+
+case 19:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierEtudiant.inc.php");
+		}
+	}
+	break;
+
+case 20:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierSalarie.inc.php");
+		}
+	}
+	break;  
     
 default : 	include_once('pages/accueil.inc.php');
 }
