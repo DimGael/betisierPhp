@@ -46,7 +46,7 @@ if(isset($_POST['citation']) && isset($_POST['enseignant'])){
 			//Succés lors de l'insertion de la citation
 			?>
 				<img src="image/valid.png"/>La citation a été rajoutée, elle sera affichée lorsqu'elle aura été validé par un administrateur.
-				Redirection automatique dans 2 secondes.
+				<br><br>Redirection automatique dans 2 secondes.
 			<?php
 			redirigerAccueil();
 

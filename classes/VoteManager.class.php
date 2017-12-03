@@ -56,7 +56,7 @@
 
 		//Supprime tous les votes de la personne en paramètres
 		public function toutSupprimerNumeroPersonne($numeroPersonne){
-			$reqSql = "DELETE FROM vote WHERE per_num = $numeroPersonne";
+			$reqSql = "DELETE FROM vote WHERE per_num = ".$numeroPersonne;
 
 			$req = $this->db->prepare($reqSql);
 
