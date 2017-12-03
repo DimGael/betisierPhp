@@ -8,7 +8,7 @@ $_SESSION['vil'] = $_GET['vil'];
 		$nomVille = $villeManager->getVilleNom($_SESSION['vil']);
 ?>
 
-<h2> Voulez-vous vraiment supprimer TrucMuche </h2>
+<h2> Voulez-vous vraiment supprimer <?php echo $nomVille->getNom(); ?> ?</h2>
 
 <form method="post"  action="index.php?page=24">
 	<input type="submit" value="Valider"/>
