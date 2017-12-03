@@ -93,7 +93,17 @@
     }
 
     public function supprimerVille($numVille){
+        $this->supprimerDepartement($numVille);
+
         $sql ="DELETE FROM ville WHERE vil_num = '$numVille'";
+
+        $req = $this->db->prepare($sql);
+
+            return $req->execute();
+    }
+
+    public function supprimerDepartement($nomVille){
+        $sql ="DELETE FROM departement WHERE vil_num = '$nomVille'";
 
         $req = $this->db->prepare($sql);
 
