@@ -50,7 +50,7 @@
 					if(estAdmin()){
 				?>
 				<li><a href="index.php?page=15">Valider</a></li>
-				<li><a href="index.php?page=10">Supprimer</a></li>
+				<li><a href="index.php?page=25">Supprimer</a></li>
 			<?php
 					}
 				}
@@ -72,7 +72,7 @@
 				<?php
 					if(estAdmin()){
 				?>			
-					<li><a href="index.php?page=12">Supprimer</a></li>
+					<li><a href="index.php?page=22">Supprimer</a></li>
 			<?php
 					}
 				}

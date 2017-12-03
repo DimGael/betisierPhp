@@ -173,6 +173,56 @@ case 21 :
 	}
     break;
 
+case 22 : 
+		if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerVille.inc.php");
+		}
+	}
+	break; 
+
+case 23 : 
+if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerVilleValidation.inc.php");
+		}
+	}
+	break; 
+
+case 24 : 
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerVilleFait.inc.php");
+		}
+	}
+	break; 
+
+case 25 : 
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerCitation.inc.php");
+		}
+	}
+	break; 
+
+case 26 : 
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerCitationValidation.inc.php");
+		}
+	}
+	break; 
+
+case 27 : 
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/supprimerCitationFait.inc.php");
+		}
+	}
+	break; 
+
+
+
     
 default : 	include_once('pages/accueil.inc.php');
 }
