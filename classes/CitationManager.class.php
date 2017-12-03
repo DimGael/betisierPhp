@@ -119,6 +119,29 @@ class CitationManager{
 
 		return $req->execute();
 	}
+
+
+
+	// Recherche
+
+	public function rechercheParNom($NomPersonne){
+		$listeCitations;
+
+		$sql = 'SELECT cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, personne p
+				WHERE c.per_num = p.per_num
+				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND p.per_nom = "'.$NomPersonne.'"';
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
 }
 
 ?>
