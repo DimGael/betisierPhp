@@ -169,9 +169,9 @@ class CitationManager{
 		$listeCitations;
 		$listeCitations = null;
 
-		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, vote v
+		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo, AVG(vot_valeur) as moyenne FROM citation c, vote v
 				WHERE c.cit_num = v.cit_num
-				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND v.vot_valeur = '.$Note;
+				AND cit_valide = 1 AND cit_date_valide IS NOT NULL GROUP BY cit_num HAVING moyenne = '.$Note;
 		
 		$req = $this->db->prepare($sql);
 		$req->execute();
@@ -189,7 +189,7 @@ class CitationManager{
 		$listeCitations;
 		$listeCitations = null;
 
-		$sql = 'SELECT cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, personne p
+		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, personne p
 				WHERE c.per_num = p.per_num
 				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND p.per_nom = "'.$NomPersonne.'" AND cit_date ="'.$Date.'"' ;
 		
@@ -204,6 +204,86 @@ class CitationManager{
 
 		return $listeCitations;
 	}
+
+	public function rechercheParNomEtNote($NomPersonne, $Note){
+		$listeCitations;
+		$listeCitations = null;
+
+		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo, AVG(vot_valeur) as moyenne FROM citation c, personne p, vote v
+				WHERE c.per_num = p.per_num
+				AND c.cit_num = v.cit_num
+				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND p.per_nom = "'.$NomPersonne.'" GROUP BY cit_num HAVING moyenne = '.$Note;
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
+	public function rechercheParDateEtNote($Date, $Note){
+		$listeCitations;
+		$listeCitations = null;
+
+		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo, AVG(vot_valeur) as moyenne FROM citation c, personne p, vote v
+				WHERE c.per_num = p.per_num
+				AND c.cit_num = v.cit_num
+				AND cit_valide = 1 
+				AND cit_date_valide IS NOT NULL 
+				AND cit_date = "'.$Date.'"
+				GROUP BY cit_num 
+				HAVING moyenne = '.$Note;
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
+	public function rechercheParTout($NomPersonne, $Date, $Note){
+		$listeCitations;
+		$listeCitations = null;
+
+		$sql = 'SELECT c.cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo, AVG(vot_valeur) as moyenne FROM citation c, personne p, vote v
+				WHERE c.per_num = p.per_num
+				AND c.cit_num = v.cit_num
+				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND p.per_nom = "'.$NomPersonne.'" AND cit_date = "'.$Date.'" GROUP BY v.cit_num HAVING moyenne = '.$Note;
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public function supprimerCitation($numCit){
 
