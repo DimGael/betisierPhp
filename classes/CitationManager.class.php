@@ -126,10 +126,50 @@ class CitationManager{
 
 	public function rechercheParNom($NomPersonne){
 		$listeCitations;
+		$listeCitations = null;
 
 		$sql = 'SELECT cit_num, c.per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, personne p
 				WHERE c.per_num = p.per_num
 				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND p.per_nom = "'.$NomPersonne.'"';
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
+	public function rechercheParDate($Date){
+		$listeCitations;
+		$listeCitations = null;
+
+		$sql = 'SELECT cit_num, per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c
+				WHERE cit_valide = 1 AND cit_date_valide IS NOT NULL AND cit_date = '.$Date;
+		
+		$req = $this->db->prepare($sql);
+		$req->execute();
+
+		while($citation = $req->fetch(PDO::FETCH_OBJ)){
+			$listeCitations[] = new Citation($citation);
+		}
+
+		$req->closeCursor();
+
+		return $listeCitations;
+	}
+
+	public function rechercheParNote($Note){
+		$listeCitations;
+		$listeCitations = null;
+
+		$sql = 'SELECT c.cit_num, per_num, per_num_valide, per_num_etu, cit_libelle, cit_date, cit_valide, cit_date_valide, cit_date_depo FROM citation c, vote v
+				WHERE c.cit_num = v.cit_num
+				AND cit_valide = 1 AND cit_date_valide IS NOT NULL AND v.vot_valeur = '.$Note;
 		
 		$req = $this->db->prepare($sql);
 		$req->execute();

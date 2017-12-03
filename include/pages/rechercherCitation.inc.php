@@ -5,14 +5,6 @@
 	$personneManager = new PersonneManager($pdo);
 	$voteManager = new VoteManager($pdo);
 
-	
-
-
-
-
-
-
-
 	if((!empty($_POST['nom'])) || (!empty($_POST['date'])) || (!empty($_POST['note']))){ //Test pour savoir si au moins une des valeurs est vraie
 
 		if((!empty($_POST['nom'])) && (!empty($_POST['date'])) && (!empty($_POST['note']))){ //Test pour savoir si les trois champs sont remplis
@@ -70,26 +62,94 @@
 										</tr>
 									<?php
 										}
-								
-
-
-
-
-
-
-
 						}
 						if((!empty($_POST['date']))){ //Si date est rempli
+							$listeCitation = $citationManager->rechercheParDate($_POST['date']);
 
+						?>
+							<table>
+								<tr>
+									<th>Nom de l'enseignant</th>
+									<th>Libellé</th>
+									<th>Date</th>
+									<th>Moyenne des notes</th>
+									<?php
+										foreach ($listeCitation as $citation) {
+											$personne = $personneManager->getPersonneNumero($citation->getNumeroPersonne());
+									?>
+										<tr>
+											<td> <?php echo $personne->getPrenom().' '.$personne->getNom(); ?> </td>
+											<td> <?php echo $citation->getLibelle() ?> </td>
+											<td> <?php echo getFrenchDate($citation->getDate()) ?> </td>
+											<td> <?php echo $voteManager->getMoyenneVotesCitation($citation->getNumero()) ?> </td>
+
+
+
+											<?php
+											if(estEtudiant()){
+													if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
+											?>
+														<td> <img src="./image/erreur.png" alt="Erreur"> </td>
+											<?php
+													}
+													else{
+											?>
+														<td> <a href = "index.php?page=13&cit=<?php echo $citation->getNumero();?>"><img src="./image/modifier.png" alt="Modifier"></a> </td>
+											<?php
+													}
+											}
+										?>
+										</tr>
+									<?php
+										}
+						}
 						}
 						if((!empty($_POST['note']))){ //Si note est rempli
+							$listeCitation = $citationManager->rechercheParNote($_POST['note']);
 
+						?>
+							<table>
+								<tr>
+									<th>Nom de l'enseignant</th>
+									<th>Libellé</th>
+									<th>Date</th>
+									<th>Moyenne des notes</th>
+									<?php
+										foreach ($listeCitation as $citation) {
+											$personne = $personneManager->getPersonneNumero($citation->getNumeroPersonne());
+									?>
+										<tr>
+											<td> <?php echo $personne->getPrenom().' '.$personne->getNom(); ?> </td>
+											<td> <?php echo $citation->getLibelle() ?> </td>
+											<td> <?php echo getFrenchDate($citation->getDate()) ?> </td>
+											<td> <?php echo $voteManager->getMoyenneVotesCitation($citation->getNumero()) ?> </td>
+
+
+
+											<?php
+											if(estEtudiant()){
+													if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
+											?>
+														<td> <img src="./image/erreur.png" alt="Erreur"> </td>
+											<?php
+													}
+													else{
+											?>
+														<td> <a href = "index.php?page=13&cit=<?php echo $citation->getNumero();?>"><img src="./image/modifier.png" alt="Modifier"></a> </td>
+											<?php
+													}
+											}
+										?>
+										</tr>
+									<?php
+										}
+						
 						}
 					}
 				}
 			}
 		}
-	}
+	
 	else{
 ?>
 
