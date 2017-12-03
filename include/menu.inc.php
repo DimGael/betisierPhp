@@ -68,7 +68,6 @@
 				if (estConnecte()) {
 			?>
 			<li><a href="index.php?page=7">Ajouter</a></li>
-			<li><a href="index.php?page=11">Modifier</a></li>
 				<?php
 					if(estAdmin()){
 				?>			
