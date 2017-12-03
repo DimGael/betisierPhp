@@ -10,7 +10,7 @@ class FonctionManager{
 	public function getAllFonctions(){
 		$listeFonctions = array();
 
-		$reqSql = "SELECT fon_num, fon_libelle FROM FONCTION ORDER BY fon_num";
+		$reqSql = "SELECT fon_num, fon_libelle FROM fonction ORDER BY fon_num";
 
 		$req = $this->db->prepare($reqSql);
 		$req->execute();
@@ -25,7 +25,7 @@ class FonctionManager{
 
 	public function getFonctionNumero($numeroFonction){
 		$fonction = null;
-		$reqSql = "SELECT fon_num, fon_libelle FROM FONCTION WHERE fon_num = ".$numeroFonction;
+		$reqSql = "SELECT fon_num, fon_libelle FROM fonction WHERE fon_num = ".$numeroFonction;
 
 		$req = $this->db->prepare($reqSql);
 		$req->execute();

@@ -19,13 +19,9 @@ if(isset($_POST['nomPersonne']))
 				Redirection automatique dans 2 secondes.
 			</p>
 			<?php
-			redirigerPageNumero(1);
+			redirigerPageNumero(1,2);
 		}
 		else{
-
-			$salt = "48@!alsd";
-			$password = $_POST['passwordPersonne'];
-			$passwordConverti = md5(md5($password).$salt);
 
 			$_SESSION['personneAAjouter'] = array(
 				'per_nom' => $_POST['nomPersonne'],
@@ -34,13 +30,13 @@ if(isset($_POST['nomPersonne']))
 				'per_mail' => $_POST['mailPersonne'],
 				'per_admin' => 0,
 				'per_login' => $_POST['loginPersonne'],
-				'per_pwd' => $passwordConverti
+				'per_pwd' => $_POST['passwordPersonne']
 			);
 
 			$_SESSION['etudiant'] = $_POST['categorie'] == 'etudiant';
 
 			//Redirection à la page ajouter un étudiant
-			redirigerPageNumero(11);
+			redirigerPageNumero(11,1);
 		}
 	}
 }

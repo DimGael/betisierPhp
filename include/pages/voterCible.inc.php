@@ -10,3 +10,10 @@ $votemanager->add(new Vote(array(
 ?>
 
 <h1> Note affectée! </h1>
+
+	<p>
+		Redirection automatique dans 2 secondes.
+	</p>
+<?php
+redirigerAccueil();
+?>

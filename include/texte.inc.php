@@ -107,14 +107,76 @@ case 13:
     break;  
 
 case 14:
-		if(pagePourConnectes())
+	if(pagePourConnectes())
 	{
 		if(pagePourEtudiants()){
     		include("pages/voterCible.inc.php");
     	}
     }
-    break;  
+<<<<<<< HEAD
+    break; 
+
+case 15 :  
+	if(pagePourConnectes())
+	{
+		include("pages/rechercherCitation.inc.php");
+	}
+    break;
   
+=======
+    break;  
+
+case 15:
+	
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/validerCitation.inc.php");
+		}
+	}
+	break;
+
+case 16:
+	
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/validerCitationCible.inc.php");
+		}
+	}
+	
+	break;
+
+case 17:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierPersonneMenu.inc.php");
+		}
+	}
+	break;
+
+case 18:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierPersonne.inc.php");
+		}
+	}
+	break;
+
+case 19:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierEtudiant.inc.php");
+		}
+	}
+	break;
+
+case 20:
+	if(pagePourConnectes()){
+		if(pagePourAdmin()){
+			include("pages/modifierSalarie.inc.php");
+		}
+	}
+	break;  
+>>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
     
 default : 	include_once('pages/accueil.inc.php');
 }

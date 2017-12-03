@@ -23,17 +23,17 @@
 
 	//Redirige l'utilisateur à la page choisi
 	//$numero : numero de la page sur laquelle rediriger l'utilisateur
-	function redirigerPageNumero($numero){
-		header("Refresh:2; index.php?page=$numero");
+	function redirigerPageNumero($numero, $temps){
+		header("Refresh:$temps; index.php?page=$numero");
 		exit();
 	}
 
 	function redirigerAccueil(){
-		redirigerPageNumero(0);
+		redirigerPageNumero(0, 2);
 	}
 
 	function redirigerConnexion(){
-		redirigerPageNumero(11);
+		redirigerPageNumero(11, 2);
 	}
 
 	//La méthode pagePourConnecte va renvoyer vrai si l'utilisateur est connecté, sinon elle renvoie faux et redirige l'utilisateur à la page de connexion
@@ -74,6 +74,20 @@
 		}
 
 		return false;
+	}
+
+	function pagePourAdmin(){
+		if(!estAdmin()){
+			echo "<h1>Erreur</h1>\n";
+			echo "<p>\n";
+				echo "<img src=\"image/erreur.png\" alt=\"Erreur\"/>Vous n'avez pas le droit d'accéder à cette page.\n";
+			echo "</p>\n";	
+
+			redirigerAccueil();
+			return false;
+		}
+
+		return true;
 	}
 	
 	

@@ -8,73 +8,92 @@ class SalarieManager{
 	}
 
 	public function getAllSalarie(){
-			$listeSal = array();
-			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM Etudiant ORDER BY per_num';
+		$listeSal = array();
+		$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM salarie ORDER BY per_num';
 
-			$req = $this->db->prepare($reqSql);
-			$req->execute();
+		$req = $this->db->prepare($reqSql);
+		$req->execute();
 
-			while ($salarie = $req->fetch(PDO::FETCH_OBJ)){
-				$listeSal[] = new Etudiant($salarie);
-			}
-
-			$req->closeCursor();
-
-			return $listeSal;
+		while ($salarie = $req->fetch(PDO::FETCH_OBJ)){
+			$listeSal[] = new Salarie($salarie);
 		}
 
-		public function estSalarie($numeroPersonne){
-			return !is_null($this->getSalarieNumero($numeroPersonne));
+		$req->closeCursor();
+
+		return $listeSal;
+	}
+
+	public function estSalarie($numeroPersonne){
+		return !is_null($this->getSalarieNumero($numeroPersonne));
+	}
+
+	public function getSalarieNumero($numeroPersonne){
+		$salarie = null;
+
+		$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM salarie WHERE per_num = '.$numeroPersonne;
+
+		$req = $this->db->prepare($reqSql);
+		$req->execute();
+
+		while($resultat = $req->fetch(PDO::FETCH_OBJ)){
+			$salarie = new Salarie($resultat);
 		}
 
-		public function getSalarieNumero($numeroPersonne){
-			$salarie = null;
+		$req->closeCursor();
 
-			$reqSql = 'SELECT per_num, sal_telprof, fon_num FROM SALARIE WHERE per_num = '.$numeroPersonne;
+		return $salarie;
+	}
 
-			$req = $this->db->prepare($reqSql);
-			$req->execute();
+	public function add($salarie){
+		$reqSql = "INSERT INTO salarie (per_num, sal_telprof, fon_num)
+		VALUES(:per_num, :sal_telprof, :fon_num)";
 
-			while($resultat = $req->fetch(PDO::FETCH_OBJ)){
-				$salarie = new Salarie($resultat);
-			}
+		$req = $this->db->prepare($reqSql);
 
-			$req->closeCursor();
+		return $req->execute(array(
+			'per_num' => $salarie->getNumeroPersonne(),
+			'sal_telprof' => $salarie->getTelephonePro(),
+			'fon_num' => $salarie->getNumeroFonction()
+		));
+	}
 
-			return $salarie;
+	public function getAllSalarieFonctionLibelle($libelleFonction){
+		$listeSal = array();
+		
+		$reqSql = "SELECT s.per_num, s.sal_telprof, s.fon_num FROM salarie s
+		INNER JOIN fonction f ON f.fon_num = s.fon_num
+		WHERE f.fon_libelle = '$libelleFonction'";
+
+		$req = $this->db->prepare($reqSql);
+		$req->execute();
+
+		while($resultat = $req->fetch(PDO::FETCH_OBJ)){
+			$listeSal[] = new Salarie($resultat);
 		}
 
-		public function add($salarie){
-			$reqSql = "INSERT INTO SALARIE (per_num, sal_telprof, fon_num)
-			VALUES(:per_num, :sal_telprof, :fon_num)";
+		$req->closeCursor();
 
-			$req = $this->db->prepare($reqSql);
+		return $listeSal;
+	}
 
-			return $req->execute(array(
-				'per_num' => $salarie->getNumeroPersonne(),
-				'sal_telprof' => $salarie->getTelephonePro(),
-				'fon_num' => $salarie->getNumeroFonction()
-			));
-		}
+	public function update($salarie){
+		$reqSql = "UPDATE salarie SET sal_telprof = :telpro, fon_num = :fon_num WHERE per_num = ".$salarie->getNumeroPersonne();
 
-		public function getAllSalarieFonctionLibelle($libelleFonction){
-			$listeSal = array();
-			
-			$reqSql = "SELECT s.per_num, s.sal_telprof, s.fon_num FROM SALARIE s
-			INNER JOIN FONCTION f ON f.fon_num = s.fon_num
-			WHERE f.fon_libelle = '$libelleFonction'";
+		$req = $this->db->prepare($reqSql);
 
-			$req = $this->db->prepare($reqSql);
-			$req->execute();
+		return $req->execute(array(
+			'telpro' => $salarie->getTelephonePro(),
+			'fon_num' => $salarie->getNumeroFonction()
+		));
+	}
 
-			while($resultat = $req->fetch(PDO::FETCH_OBJ)){
-				$listeSal[] = new Salarie($resultat);
-			}
+	public function delete($numeroPersonne){
+		$reqSql = "DELETE FROM salarie WHERE per_num = $numeroPersonne";
 
-			$req->closeCursor();
+		$req = $this->db->prepare($reqSql);
 
-			return $listeSal;
-		}
+		return $req->execute();
+	}
 }
 
 ?>

@@ -126,6 +126,10 @@ class Personne{
 		$this->pwd = $password;
 	}
 
+	public function hashPassword($password){
+		return md5(md5($password)."48@!alsd");
+	}
+
 	public function estValideMdp($mdp){
 	    $salt = "48@!alsd";
 		$password = $mdp;

@@ -30,45 +30,41 @@
 		<th>Moyenne des notes</th>
 		<?php
 		if(estEtudiant()){
-		?>
-		<th>Noter</th>
-		<?php
-		}
-		?>
-	</tr>
-
-	<?php
-		foreach ($listeCitation as $citation) {
-			$personne = $personneManager->getPersonneNumero($citation->getNumeroPersonne());
-	?>
-		<tr>
-			<td> <?php echo $personne->getPrenom().' '.$personne->getNom(); ?> </td>
-			<td> <?php echo $citation->getLibelle() ?> </td>
-			<td> <?php echo getFrenchDate($citation->getDate()) ?> </td>
-			<td> <?php echo $voteManager->getMoyenneVotesCitation($citation->getNumero()) ?> </td>
-
-
-
-			<?php
-			if(estEtudiant()){
-					if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
 			?>
-						<td> <img src="./image/erreur.png" alt="Erreur"> </td>
+			<th>Noter</th>
 			<?php
-					}
-					else{
-			?>
-						<td> <a href = "index.php?page=13&cit=<?php echo $citation->getNumero();?>"><img src="./image/modifier.png" alt="Modifier"></a> </td>
-			<?php
-					}
 			}
 			?>
-
-
-
-
 		</tr>
-	<?php
-		}
+
+		<?php
+			foreach ($listeCitation as $citation) {
+				$personne = $personneManager->getPersonneNumero($citation->getNumeroPersonne());
+		?>
+			<tr>
+				<td> <?php echo $personne->getPrenom().' '.$personne->getNom(); ?> </td>
+				<td> <?php echo $citation->getLibelle() ?> </td>
+				<td> <?php echo getFrenchDate($citation->getDate()) ?> </td>
+				<td> <?php echo $voteManager->getMoyenneVotesCitation($citation->getNumero()) ?> </td>
+
+
+
+				<?php
+				if(estEtudiant()){
+						if($voteManager->aVote($_SESSION['numPersonneConnecte'], $citation->getNumero())){
+				?>
+							<td> <img src="./image/erreur.png" alt="Erreur"> </td>
+				<?php
+						}
+						else{
+				?>
+							<td> <a href = "index.php?page=13&cit=<?php echo $citation->getNumero();?>"><img src="./image/modifier.png" alt="Modifier"></a> </td>
+				<?php
+						}
+				}
+			?>
+			</tr>
+		<?php
+			}
 	?>
 </table>
