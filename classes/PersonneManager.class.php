@@ -98,7 +98,7 @@
 			return $personne;
 		}
 
-		public function supprimerPersonne($numeroPersonne){
+		public function delete($numeroPersonne){
 			$sql = "DELETE FROM personne WHERE per_num = $numeroPersonne";
 
 			$req = $this->db->prepare($sql);

@@ -31,7 +31,7 @@ if(isset($_SESSION['personneAAjouter']) && isset($_POST['telPro']) && isset($_PO
 			'fon_num' => $_POST['fonction']
 		)))){
 			//Erreur lors de l'insertion du salarié
-			$personneManager->supprimerPersonne($numPersonneAjoutee);
+			$personneManager->delete($numPersonneAjoutee);
 			?>
 		 		<img src="image/erreur.png" alt="Erreur">Erreur lors de l'insertion du salarié
 		 	<?php
@@ -50,8 +50,7 @@ if(isset($_SESSION['personneAAjouter']) && isset($_POST['telPro']) && isset($_PO
 else if(isset($_SESSION['personneAAjouter']) && isset($_SESSION['etudiant'])){
 	if($_SESSION['etudiant']){
 		//Redirection vers la page ajouter Etudiant
-		Header('Location:index.php?page=11');
-		exit();
+		redirigerPageNumero(12);
 	}
 	else
 	{

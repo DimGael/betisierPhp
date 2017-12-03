@@ -221,6 +221,15 @@ case 27 :
 	}
 	break; 
 
+case 28 :  
+	if(pagePourConnectes())
+	{
+		if(pagePourAdmin())
+		{
+		include("pages/supprimerPersonneCible.inc.php");
+		}
+	}
+    break;
 
 
     

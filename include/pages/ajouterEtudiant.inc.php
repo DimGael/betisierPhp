@@ -28,6 +28,7 @@ if(isset($_POST['annee']) && isset($_POST['departement']) && isset($_SESSION['pe
 		 {
 		 	//Erreur lors de l'insertion de l'étudiant
 			//Supprimer la personne ajoutée avant
+			$personneManager->delete($numPersonneAjoutee);
 		 	
 		 	?>
 		 		<img src="image/erreur.png" alt="Erreur">Erreur lors de l'insertion de l'étudiant
