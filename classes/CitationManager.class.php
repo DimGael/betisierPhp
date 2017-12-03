@@ -205,12 +205,6 @@ class CitationManager{
 		return $listeCitations;
 	}
 
-
-
-
-
-
-
 	public function supprimerCitation($numCit){
 
 
