@@ -18,6 +18,7 @@ if(isset($_POST['nomVille']))
 				?>
 					<img src="image/valid.png"/> La ville <em>"<?php echo $_POST['nomVille']; ?>"</em> a été ajoutée.
 				<?php
+				redirigerAccueil();
 			}
 			else{
 				?>

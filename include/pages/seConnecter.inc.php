@@ -100,7 +100,7 @@ else
 		$_SESSION['nbRandom2'] = rand()%9+1;
 	?>
 
-	<img src="image/nb/<?php echo $_SESSION['nbRandom1'] ?>"/> + <img src="image/nb/<?php echo $_SESSION['nbRandom2'] ?>"/> = <input type="text" name="resultatAddition" id="resultatAddition" placeholder="Résultat de l'addition" /> <br>
+	<img src="image/nb/<?php echo $_SESSION['nbRandom1'] ?>.jpg" title="<?php echo $_SESSION['nbRandom1'] ?>"/> + <img src="image/nb/<?php echo $_SESSION['nbRandom2'] ?>.jpg" title="<?php echo $_SESSION['nbRandom1'] ?>"/> = <input type="text" name="resultatAddition" id="resultatAddition" placeholder="Résultat de l'addition" /> <br>
 
 	<?php
 	if((!$additionCorrect || empty($_POST['resultatAddition'])) && isset($_POST['resultatAddition']))
