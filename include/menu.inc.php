@@ -45,7 +45,7 @@
 			<?php
 				if (estConnecte()) {
 			?>
-			<li><a href="index.php?page=15">Rechercher</a></li>
+			<li><a href="index.php?page=21">Rechercher</a></li>
 				<?php
 					if(estAdmin()){
 				?>

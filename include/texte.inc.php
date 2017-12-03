@@ -113,21 +113,7 @@ case 14:
     		include("pages/voterCible.inc.php");
     	}
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     break; 
-
-case 15 :  
-	if(pagePourConnectes())
-	{
-		include("pages/rechercherCitation.inc.php");
-	}
-    break;
-  
-=======
-=======
->>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
-    break;  
 
 case 15:
 	
@@ -179,10 +165,14 @@ case 20:
 		}
 	}
 	break;  
-<<<<<<< HEAD
->>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
-=======
->>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
+
+case 21 :  
+	if(pagePourConnectes())
+	{
+		include("pages/rechercherCitation.inc.php");
+	}
+    break;
+
     
 default : 	include_once('pages/accueil.inc.php');
 }
