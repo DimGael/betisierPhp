@@ -114,6 +114,7 @@ case 14:
     	}
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     break; 
 
 case 15 :  
@@ -124,6 +125,8 @@ case 15 :
     break;
   
 =======
+=======
+>>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
     break;  
 
 case 15:
@@ -176,6 +179,9 @@ case 20:
 		}
 	}
 	break;  
+<<<<<<< HEAD
+>>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
+=======
 >>>>>>> 15a457ea8d77d88d716d3ca064179f9b0332b733
     
 default : 	include_once('pages/accueil.inc.php');
